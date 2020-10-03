@@ -12,7 +12,8 @@ public class DestroyTrash : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         spawnManager = FindObjectOfType<SpawnManager>();
         StartCoroutine(DestroyItem());
-        rb.AddExplosionForce(Random.Range(0, 1) * spawnManager.spawnSeperation, Random.rotation.eulerAngles, 50f);
+       // rb.AddExplosionForce(Random.Range(0, 1) * spawnManager.spawnSeperation, Random.rotation.eulerAngles, 50f);
+        rb.AddRelativeForce(Random.rotation.eulerAngles);
     }
 
     IEnumerator DestroyItem()

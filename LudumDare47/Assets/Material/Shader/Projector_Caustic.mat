@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Projector_Caustic
+  m_Shader: {fileID: 4800000, guid: 153b23988fe90884aa1258aa47574427, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FalloffTex:
+        m_Texture: {fileID: 2800000, guid: 0c10a65678b181045ac90a848ec6dc17, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: 0c10a65678b181045ac90a848ec6dc17, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: fa4e12b808a604e4d8f60568e0353855, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tile:
+        m_Texture: {fileID: 2800000, guid: 7dbe76239a14b754e8dbcd064f0eda8b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BlendMode: 10
+    - _BlendOp: 5
+    - _Intensity: 6.37
+    - _NoiseScale: 0.093
+    - _Scale: 0.078
+    - _Speed: 2.6
+    m_Colors:
+    - _Color: {r: 0.71733713, g: 0.9267744, b: 0.9811321, a: 0.7}
+    - _ColorT: {r: 0.4227483, g: 0.9433962, b: 0.9433962, a: 0.6}
+  m_BuildTextureStacks: []

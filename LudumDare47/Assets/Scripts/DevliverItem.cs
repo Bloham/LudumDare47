@@ -6,14 +6,17 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class DevliverItem : MonoBehaviour
 {
-    private Inventory inventory;
+    public float addFuel = 2f;
+
+    private PickingUp pickingUp;
     private Score score;
+    private Timer fuel;
     // Start is called before the first frame update
     void Start()
     {
-        inventory = GetComponent<Inventory>();
+        pickingUp = GetComponent<PickingUp>();
         score = FindObjectOfType<Score>();
-        Debug.Log(score);
+        fuel = FindObjectOfType<Timer>();
     }
 
     // Update is called once per frame
@@ -26,17 +29,19 @@ public class DevliverItem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("LeftPort"))
         {
-            score.score += inventory.leftHabourTrash;
-            inventory.leftHabourTrash = 0;
+            score.score += pickingUp.blueTrash;
+            pickingUp.blueTrash = 0;
             score.scoreText.text = "" + score.score;
+            fuel.fuel += addFuel;
             Debug.Log("Score: " + score.score);
 
         }
         if (other.gameObject.CompareTag("RightPort"))
         {
-            score.score += inventory.rightHarbourTrash;
-            inventory.rightHarbourTrash = 0;
+            score.score += pickingUp.redTrash;
+            pickingUp.redTrash = 0;
             score.scoreText.text = "" + score.score;
+            fuel.fuel += addFuel;
             Debug.Log("Score: " + score.score);
 
         }

@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float timeRemaining = 20f;
-    public CanvasManager canvasManager;
+    public float maxFuel = 20f;
+    public float fuel = 20f;
 
-    bool timeIsOver = false;
+    public CanvasManager canvasManager;
+    public Transform needleTransform;
+
+    private const float MAX_FUEL_ANGLE = -100;
+    private const float ZERO_FUEL_ANGLE = 100;
+
+    private bool fuelIsOut = false;
+    
     // Start is called before the first frame update
+
+
+    private void Awake()
+    {
+        //needleTransform = transform.Find("needle");
+    }
     void Start()
     {
         
@@ -17,23 +30,40 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timeRemaining > 0)
+        if(fuel > 0)
         {
-            timeRemaining -= Time.deltaTime;
+            fuel -= Time.deltaTime;
+
+            if(fuel > maxFuel)
+            {
+                fuel = maxFuel;
+            }
+
+            needleTransform.eulerAngles = new Vector3(0, 0, GetFuelRotation());
         }
         else
         {
-            if (timeIsOver == false)
+            if (fuelIsOut == false)
             {
-                TimeOver();
+                NoFuel();
             }
             
 
         }
     }
-    private void TimeOver()
+
+    private float GetFuelRotation()
     {
-        timeIsOver = true;
+        float totalAngleSize = ZERO_FUEL_ANGLE - MAX_FUEL_ANGLE;
+
+        float fuelNormalized = fuel / maxFuel;
+
+        return ZERO_FUEL_ANGLE - fuelNormalized * totalAngleSize;
+    }
+
+    private void NoFuel()
+    {
+        fuelIsOut = true;
 
         Debug.Log("Game Over");
         canvasManager.GameOver();

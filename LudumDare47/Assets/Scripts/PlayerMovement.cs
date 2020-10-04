@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject speedBack;
 
     Rigidbody rb;
-    int CurrentSpeed; //  was: maxThrustLvl;
+    public int CurrentSpeed; //  now also for fuel
     bool isGrounded;
     
     public float rotationSpeed = 100.0F;

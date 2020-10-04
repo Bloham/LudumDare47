@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class PickingUp : MonoBehaviour
 {
     // AKA INVENTORY
-    public int redTrash;
-    public Color32 redPort = new Color32(255, 55, 0, 255);
     public int blueTrash;
-    public Color bluePort = Color.white;
-    public int trashUtilization;
     public float addFuel = 6f;
+    public int maxChargo = 6;
 
-    public GameObject[] cargo;
-    private int cargoIndex;
+    public GameObject chargo1;
+    public GameObject chargo2;
+    public GameObject chargo3;
+    public GameObject chargo4;
+    public GameObject chargo5;
+    public GameObject chargo6;
+
 
     private Score score;
     private Timer fuel;
@@ -22,7 +24,6 @@ public class PickingUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cargoIndex = cargo.Length;
         score = FindObjectOfType<Score>();
         fuel = FindObjectOfType<Timer>();
     }
@@ -38,71 +39,85 @@ public class PickingUp : MonoBehaviour
         if (other.gameObject.CompareTag("LeftPort"))
         {
             score.score += blueTrash;
-            foreach (GameObject box in cargo)
-            {
-                if (box.GetComponent<Image>().color == bluePort)
-                {
-                    box.SetActive(false);
-                    trashUtilization -= 1;
-                }
-            }
+            ChangeCargo(0);
+            score.scoreText.text = "" + score.score;
+            fuel.fuel += addFuel * blueTrash;
             blueTrash = 0;
-            score.scoreText.text = "" + score.score;
-            fuel.fuel += addFuel;
-            Debug.Log("Score: " + score.score);
-
-        }
-        if (other.gameObject.CompareTag("RightPort"))
-        {
-            score.score += redTrash;
-            foreach (GameObject box in cargo)
-            {
-                if (box.GetComponent<Image>().color == redPort)
-                {
-                    box.SetActive(false);
-                    trashUtilization -= 1;
-                }
-            }
-            redTrash = 0;
-            score.scoreText.text = "" + score.score;
-            fuel.fuel += addFuel;
             Debug.Log("Score: " + score.score);
 
         }
 
-        if (other.gameObject.CompareTag("LeftTrash"))
-        {
-            if (trashUtilization < cargoIndex)
-            {
-                GameObject cargoDisplay = cargo[trashUtilization];
-                var image = cargoDisplay.GetComponent<Image>();
-                trashUtilization += 1;
-                cargoDisplay.SetActive(true);
-                image.color = bluePort;
+        if (other.gameObject.CompareTag("LeftTrash") && blueTrash <= maxChargo)
+        { 
                 blueTrash += 1;
+                ChangeCargo(blueTrash);
                 Destroy(other.gameObject);
-            }
-            else
-            {
-                Destroy(other.gameObject);
-            }
         }
-        if (other.gameObject.CompareTag("RightTrash"))
+    }
+    private void ChangeCargo(int chargo)
+    {
+        if (chargo == 0)
         {
-            if (trashUtilization < cargoIndex)
-            {
-                GameObject cargoDisplay = cargo[trashUtilization];
-                var image = cargoDisplay.GetComponent<Image>();
-                trashUtilization += 1;
-                cargoDisplay.SetActive(true);
-                image.color = redPort;
-                redTrash += 1;
-                Destroy(other.gameObject);
-            }
-            else
-            {
-                Destroy(other.gameObject);
-            }
+            chargo1.SetActive(false);
+            chargo2.SetActive(false);
+            chargo3.SetActive(false);
+            chargo4.SetActive(false);
+            chargo5.SetActive(false);
+            chargo6.SetActive(false);
+        }
+        if (chargo == 1)
+        {
+            chargo1.SetActive(true);
+            chargo2.SetActive(false);
+            chargo3.SetActive(false);
+            chargo4.SetActive(false);
+            chargo5.SetActive(false);
+            chargo6.SetActive(false);
+        }
+        if (chargo == 2)
+        {
+            chargo1.SetActive(true);
+            chargo2.SetActive(true);
+            chargo3.SetActive(false);
+            chargo4.SetActive(false);
+            chargo5.SetActive(false);
+            chargo6.SetActive(false);
+        }
+        if (chargo == 3)
+        {
+            chargo1.SetActive(true);
+            chargo2.SetActive(true);
+            chargo3.SetActive(true);
+            chargo4.SetActive(false);
+            chargo5.SetActive(false);
+            chargo6.SetActive(false);
+        }
+        if (chargo == 4)
+        {
+            chargo1.SetActive(true);
+            chargo2.SetActive(true);
+            chargo3.SetActive(true);
+            chargo4.SetActive(true);
+            chargo5.SetActive(false);
+            chargo6.SetActive(false);
+        }
+        if (chargo == 5)
+        {
+            chargo1.SetActive(true);
+            chargo2.SetActive(true);
+            chargo3.SetActive(true);
+            chargo4.SetActive(true);
+            chargo5.SetActive(true);
+            chargo6.SetActive(true);
+        }
+        if (chargo == 6)
+        {
+            chargo1.SetActive(true);
+            chargo2.SetActive(true);
+            chargo3.SetActive(true);
+            chargo4.SetActive(true);
+            chargo5.SetActive(true);
+            chargo6.SetActive(true);
         }
     }
 }

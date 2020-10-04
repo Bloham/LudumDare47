@@ -8,12 +8,15 @@ using UnityEngine.SceneManagement;
 public class CanvasManager : MonoBehaviour
 {
     public GameObject gameOverScreen;
+    public GameObject tutorialScreen;
     public bool gameIsPaused;
     public bool gameOver;
+    public float tutorialTime;
         // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
+        StartCoroutine(Tutorial());
     }
 
     // Update is called once per frame
@@ -22,7 +25,7 @@ public class CanvasManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             
-            PauseGame();
+            RestartGame();
         }
     }
 
@@ -55,5 +58,10 @@ public class CanvasManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    private IEnumerator Tutorial()
+    {
+        yield return new WaitForSeconds(tutorialTime);
+        tutorialScreen.SetActive(false);
     }
 }

@@ -38,11 +38,11 @@ Material:
     m_Floats:
     - _BlendMode: 10
     - _BlendOp: 5
-    - _Intensity: 6.37
-    - _NoiseScale: 0.093
-    - _Scale: 0.078
-    - _Speed: 2.6
+    - _Intensity: 8.84
+    - _NoiseScale: 0.189
+    - _Scale: 0.106
+    - _Speed: 4.27
     m_Colors:
-    - _Color: {r: 0.71733713, g: 0.9267744, b: 0.9811321, a: 0.7}
-    - _ColorT: {r: 0.4227483, g: 0.9433962, b: 0.9433962, a: 0.6}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.7}
+    - _ColorT: {r: 0, g: 1, b: 1, a: 0.6}
   m_BuildTextureStacks: []

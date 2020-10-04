@@ -29,20 +29,15 @@ public class DevliverItem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("LeftPort"))
         {
-            score.score += pickingUp.blueTrash;
-            pickingUp.blueTrash = 0;
-            score.scoreText.text = "" + score.score;
-            fuel.fuel += addFuel;
-            Debug.Log("Score: " + score.score);
+            while(pickingUp.blueTrash > 0)
+            {
+                score.score += pickingUp.blueTrash;
+                score.scoreText.text = "" + score.score;
+                fuel.fuel += addFuel * pickingUp.blueTrash;
+                pickingUp.blueTrash = 0;
+                Debug.Log("Score: " + score.score);
+            }
 
-        }
-        if (other.gameObject.CompareTag("RightPort"))
-        {
-            score.score += pickingUp.redTrash;
-            pickingUp.redTrash = 0;
-            score.scoreText.text = "" + score.score;
-            fuel.fuel += addFuel;
-            Debug.Log("Score: " + score.score);
 
         }
     }

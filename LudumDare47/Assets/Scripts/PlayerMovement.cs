@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float baseSpeed;
+    public float maxTravelDistanceZ = 100f;
 
     public GameObject speed1;
     public GameObject speed2;
@@ -30,8 +31,9 @@ public class PlayerMovement : MonoBehaviour
     void GroundCheck()
     {
         RaycastHit hit;
-        float distance = 1f;
+        float distance = 3f;
         Vector3 dir = new Vector3(0, -2);
+        Debug.DrawRay(transform.position, dir, Color.green);
         if (Physics.Raycast(transform.position, dir, out hit, distance))
         {
             isGrounded = true;
@@ -75,9 +77,23 @@ public class PlayerMovement : MonoBehaviour
 
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         rotation *= Time.deltaTime;
-        transform.Rotate(0, rotation, 0);
+        transform.Rotate(0, 0, rotation);
 
-        transform.position += transform.forward * CurrentSpeed * baseSpeed * Time.deltaTime;
+        rb.AddForce(transform.up * CurrentSpeed * baseSpeed * Time.deltaTime);
+
+        /*
+        if (transform.position.z <= maxTravelDistanceZ)
+        {
+            transform.position += transform.up * CurrentSpeed * baseSpeed * Time.deltaTime;
+        }
+        else
+        {
+            Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, maxTravelDistanceZ - 1f);
+            transform.position = newPosition;
+        }
+        */
+        
+        
     }
 
     private void ChangeSpeedDisplay(int speed)
